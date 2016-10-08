@@ -2,7 +2,9 @@ var vinElem = document.getElementById('vin');
 
 function startRecording(id) {
   gm.speech.startRecording(function (audio) {
-    vinElem.innerHTML = audio;
+    gm.io.readFile(function (f) {
+      vinElem.innerHTML = f;
+    }, null, audio);
 
     gm.speech.stopRecording(function () {}, function () {}, id);
   }, function (e, e2) {

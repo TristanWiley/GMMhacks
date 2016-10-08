@@ -1,15 +1,24 @@
-var vinElem = document.getElementById('vin');
+var path = document.getElementById('vin');
 
 function startRecording(id) {
   gm.speech.startRecording(function (audio) {
-    
+    path.innerHTML = audio;
+
+    gm.communication.sendFile(function () {
+      path.innerHTML = "Success!";
+    }, function (e, e2) {
+      path.innerHTML = e + ": " + e2;
+    }, {
+      "fileURL": "camera/RecAudio_34.wav",
+      "uploadURL": "http://requestb.in/oqws4coq",
+    });
 
     gm.speech.stopRecording(function () {}, function () {}, id);
   }, function (e, e2) {
-    vinElem.innerHTML = "FCB: " + e2;
+    path.innerHTML = "FCB: " + e2;
   }, {
-    "intro": "Hello hello hello hello!",
-    "silenceLength": 500,
+    "intro": "Hello",
+    "silenceLength": 1000,
     "silenceDetection": true,
     "maxRecordingWindow": 60000,
     "noiseSuppression": gm.constants.noiseSuppression.LOW,
@@ -21,36 +30,3 @@ document.getElementById("button").onclick = function () {
     startRecording(sessionId);
   });
 };
-
-
-/*
-gm.speech.startSpeechRecSession(function () {
-  vinElem.innerHTML = gmint.appmanager.getAppsList();
-
-  gm.speech.startRecording(function () {
-    vinElem.innerHTML = "9";
-  }, function (e) {
-    vinElem.innerHTML = e + " potato";
-  }, {
-
-  });
-});
-
-gm.info.getCurrentPosition(function (position) {
-  console.log("Current Position " + position);
-  vinElem.innerHTML = 'Lat: ' + position.coords.latitude + ' Long: ' + position.coords.longitude;
-});
-
-var id = gm.info.watchPosition(processPosition, processFailure, true);
-
-function processPosition(position){
-  var lat = position.coords.latitude;
-  var lng = position.coords.longitude;
-  console.log(lat + " " + lng);
-  vinElem.innerHTML = 'Lat: ' + lat + ' Long: ' + lng;
-}
-
-function processFailure(){
-  console.log("GPS FAILURE");
-}
-*/

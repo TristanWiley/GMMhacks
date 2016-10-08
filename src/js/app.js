@@ -1,23 +1,26 @@
 var vinElem = document.getElementById('vin');
 
-function startSession() {
-  var retObj = gmint.speech.createStartSpeechRecSession();
-  var session = gmint[retObj.objName].StartSpeechRecSessionInternal();
+function startRecording(id) {
+  gm.speech.startRecording(function (audio) {
+    vinElem.innerHTML = audio;
 
-  return gmint[retObj.objName].getId();
-}
-
-function startRecording() {
-  var retObj = gmint.speech.createStartRecording();
-  gmint[retObj.objName].StartRecordingInternal({
-    "intro": "Hello from the world!",
-    "maxRecordingWindow": 10000,
+    gm.speech.stopRecording(function () {}, function () {}, id);
+  }, function (e, e2) {
+    vinElem.innerHTML = "FCB: " + e2;
+  }, {
+    "intro": "Hello hello hello hello!",
+    "silenceLength": 500,
+    "silenceDetection": true,
+    "maxRecordingWindow": 60000,
+    "noiseSuppression": gm.constants.noiseSuppression.LOW,
   });
-
-  return gmint[retObj.objName].getId();
 }
 
-var session = startSession();
+document.getElementById("button").onclick = function () {
+  var sessionId = gm.speech.startSpeechRecSession(function () {
+    startRecording(sessionId);
+  });
+};
 
 
 /*

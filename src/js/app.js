@@ -5,7 +5,7 @@ gm.info.getCurrentPosition(function (position) {
 });
 
 gm.info.watchPosition(function (position) {
-  console.log("changed");
   vinElem.innerHTML = 'Lat: ' + position.coords.latitude + ' Long: ' + position.coords.longitude;
-});
-
+}, function () {
+  console.log("GPS failed!");
+}, null, true);

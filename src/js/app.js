@@ -1,11 +1,9 @@
-//This is just code for animation stuff.
-
 //This is where the code for doing stuff starts
 var path = document.getElementById('debug');
 
 function startRecording(id) {
   gm.speech.startRecording(function (audio) {
-    path.innerHTML = audio;
+    path.innerHTML = "Uploading...";
 
     gm.communication.sendFile(function () {
       path.innerHTML = "Success!";
@@ -17,19 +15,28 @@ function startRecording(id) {
     });
 
     gm.speech.stopRecording(function () { }, function () { }, id);
+
+    path.disabled = null;
   }, function (e, e2) {
     path.innerHTML = "FCB: " + e2;
   }, {
       "intro": "Hello",
-      "silenceLength": 1000,
+      "silenceLength": 10000,
       "silenceDetection": true,
-      "maxRecordingWindow": 60000,
-      "noiseSuppression": gm.constants.noiseSuppression.LOW,
+      "maxRecordingWindow": 15000,
+      "noiseSuppression": gm.constants.noiseSuppression.STANDARD,
     });
 }
 
 document.getElementById("button").onclick = function () {
+  path.innerHTML = "Listening...";
+  path.disabled = "disabled";
+
   var sessionId = gm.speech.startSpeechRecSession(function () {
     startRecording(sessionId);
   });
+};
+
+document.getElementById("die").onclick = function () {
+  gm.appmanager.closeApp();
 };

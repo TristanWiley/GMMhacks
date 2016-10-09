@@ -4,7 +4,8 @@ body{
 
 h1 {
   text-align: center;
-  padding-bottom: 45px;
+  font-family: "Helvetica Neue";
+  padding-bottom: 10px;
 }
 
 .buttons {
@@ -16,9 +17,9 @@ h1 {
   background-size: contain;
   padding: 45px;
   background-color: #2196F3;
-  width: 60px;  
-  height: 60px;
-  margin: 30px auto 0;
+  width: 150px;  
+  height: 150px;
+  margin: 0 auto 0;
   position: relative;
 }
 
@@ -29,7 +30,7 @@ box-shadow: 0 0 3px grey;
 }
 
 .ripple{
-  overflow:hidden;
+  overflow: hidden;
 }
 
 .ripple-effect{
@@ -38,8 +39,6 @@ box-shadow: 0 0 3px grey;
   width: 50px;
   height: 50px;
   background: white;
-
-    
   animation: ripple-animation 2s;
 }
 

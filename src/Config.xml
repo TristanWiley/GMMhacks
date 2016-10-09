@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <gmWebApp>
-  <AppID>98063052</AppID>
+  <AppID>13436475</AppID>
   <AppType>RemoteHigh</AppType>
-  <FriendlyName>Hello World</FriendlyName>
+  <FriendlyName>Hello World2</FriendlyName>
   <VehicleStatus>Drive</VehicleStatus>
   <AutoStart>false</AutoStart>
-  <AppCategory>Monitoring</AppCategory>
+  <AppCategory>Audio</AppCategory>
   <IconURL>Icon.png</IconURL>
   <MainURL>index.html</MainURL>
   <AppVersion>0.1.0</AppVersion>
   <SetupURL>setup.html</SetupURL>
-  <LocalPath>App98063052</LocalPath>
+  <LocalPath>App13436475</LocalPath>
   <Developer>Developer</Developer>
   <TrustedApp>false</TrustedApp>
   <RequestedBy>1</RequestedBy>
